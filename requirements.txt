@@ -6,3 +6,4 @@ flask-cors
 accelerate
 sentencepiece
 protobuf
+python-dotenv

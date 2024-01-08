@@ -1,5 +1,11 @@
+# Define the ARG before the FROM instruction
+ARG MODEL_NAME="tinyllama-1.1b-chat-v1.0"
+
 # Use an official Python runtime as a base image
 FROM python:3.11-slim
+
+# Redefine the ARG after the FROM instruction so we can use it in the rest of the Dockerfile
+ARG MODEL_NAME
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -11,16 +17,13 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the model directory from your local file system to the container
-COPY ./models/phi-2/ /app/models/phi-2/
+COPY ./models/${MODEL_NAME}/ /app/models/${MODEL_NAME}/
 
 # Copy the rest of your application's code to the container
 COPY . .
 
 # Make port 6001 available to the world outside this container
 EXPOSE 6001
-
-# Define environment variable (if needed)
-# ENV NAME Value
 
 # Run app.py when the container launches
 CMD ["python", "app.py"]

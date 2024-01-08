@@ -3,6 +3,7 @@ models/*
 .env
 app.log
 .scratch
+.env
 
 # General
 .DS_Store
