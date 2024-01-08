@@ -3,3 +3,6 @@ transformers
 torch
 einops
 flask-cors
+accelerate
+sentencepiece
+protobuf
