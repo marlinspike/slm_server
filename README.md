@@ -1,4 +1,4 @@
-## Phi-2 Language Server
+## OSS LLM Server
 This project lets you use the Microsoft Phi-2 (or any other Huggingface model), from a local repository. The project includes an app to download the model and a language server to use it.
 
 ### Setup
