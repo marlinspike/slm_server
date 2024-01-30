@@ -31,7 +31,7 @@ if ( "phi-2" in model_short_name):
         model = AutoModelForCausalLM.from_pretrained(f"./models/{model_short_name.lower()}/", trust_remote_code=True)
     except Exception as e:
         logging.error(f"Error loading model: {e}")
-        print(f"Error loading model: {e}")
+        print(f"Error loading model: {e}. \n Please ensure the model is downloaded and saved to the models directory.")
 elif ( "TinyLlama" in model_short_name):
     try:
         tinyllama_pipe = pipeline("text-generation", model=f"./models/{model_short_name.lower()}/", device_map="auto")
