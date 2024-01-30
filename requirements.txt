@@ -1,9 +1,6 @@
 flask
 transformers
 torch
-einops
 flask-cors
-accelerate
-sentencepiece
-protobuf
 python-dotenv
+accelerate

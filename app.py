@@ -26,10 +26,18 @@ CORS(app)  # Enable CORS
 
 # Load the Phi-2 model from the local directory
 if ( "phi-2" in model_short_name):
-    tokenizer = AutoTokenizer.from_pretrained(f"./models/{model_short_name.lower()}/", trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained(f"./models/{model_short_name.lower()}/", trust_remote_code=True)
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(f"./models/{model_short_name.lower()}/", trust_remote_code=True)
+        model = AutoModelForCausalLM.from_pretrained(f"./models/{model_short_name.lower()}/", trust_remote_code=True)
+    except Exception as e:
+        logging.error(f"Error loading model: {e}")
+        print(f"Error loading model: {e}")
 elif ( "TinyLlama" in model_short_name):
-    tinyllama_pipe = pipeline("text-generation", model=f"./models/{model_short_name.lower()}/", device_map="auto")
+    try:
+        tinyllama_pipe = pipeline("text-generation", model=f"./models/{model_short_name.lower()}/", device_map="auto")
+    except Exception as e:
+        logging.error(f"Error loading model: {e}. \n Please ensure the model is downloaded and saved to the models directory.")
+        print(f"Error loading model: {e}")
 
 def get_response_from_model(model_name: str, user_request: str, input_data):
     response = None

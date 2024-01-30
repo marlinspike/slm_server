@@ -6,7 +6,7 @@ from utils import ensure_path_exists
 models = [
     {"friendly_name": "orca", "short_name": "Orca-2-7b", "vendor_name": "microsoft"},
     {"friendly_name": "tinyllama", "short_name": "TinyLlama-1.1B-Chat-v1.0", "vendor_name": "TinyLlama"},
-    {"friendly_name": "phi2", "short_name": "phi-2", "vendor_name": "microsoft"}
+    {"friendly_name": "phi2", "short_name": "phi-2", "vendor_name": "microsoft"},
 ]
 
 # Set up argument parsing
