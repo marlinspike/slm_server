@@ -2,7 +2,7 @@
 ARG MODEL_NAME="tinyllama-1.1b-chat-v1.0"
 
 # Use an official Python runtime as a base image
-FROM python:3.11-slim
+FROM cgr.dev/chainguard/python:latest
 
 # Redefine the ARG after the FROM instruction so we can use it in the rest of the Dockerfile
 ARG MODEL_NAME
