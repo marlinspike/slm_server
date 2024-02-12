@@ -1,5 +1,5 @@
-## OSS LLM Server
-This project lets you use the Microsoft Phi-2 (or any other Huggingface model), from a local repository. The project includes an app to download the model and a language server to use it.
+## OSS SLM Server
+This project lets you use a Small Language Model (SLM), called [Microsoft Phi-2](https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/) (or any other Huggingface model), from a local repository. The project includes an app to download the model and a language server to use it. It then lets you expose an endpoint (using Flask as the webserver) so you can use the SLM like an API, just as you would with a cloud-based model, and build apps around it.
 
 ### Setup
 1. Clone the repository
