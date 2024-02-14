@@ -29,7 +29,7 @@ model_short_name = "phi-2"
 model_vendor_name = "microsoft"
 
 
-5. Run `server.py` to start the language server
+5. Run `app.py` to start the language server
 
 
 ### Usage
