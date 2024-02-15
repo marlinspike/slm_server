@@ -6,13 +6,11 @@ import logging
 import os
 from dotenv import load_dotenv
 import sys
-#model_short_name = "phi-2"
-#model_short_name = "Orca-2-7b"
 from transformers import pipeline
 from model_config import models, get_model_short_name
 load_dotenv()
 
-model_short_name = get_model_short_name("tinyllama") #"TinyLlama-1.1B-Chat-v1.0"
+model_short_name = get_model_short_name("tinyllama") 
 # Check if a command line argument is provided for the model name
 if len(sys.argv) > 1:
     model_short_name = get_model_short_name(sys.argv[1])  # Use the first command line argument as the model name
