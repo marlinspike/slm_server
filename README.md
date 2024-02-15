@@ -29,7 +29,10 @@ model_short_name = "phi-2"
 model_vendor_name = "microsoft"
 
 
-5. Run `app.py` to start the language server
+5. Run `server.py` to start the language server. The default model is tinyllama:
+```
+python3 server.py phi2
+```
 
 
 ### Usage
@@ -42,3 +45,6 @@ curl --location --request POST 'http://localhost:6001/predict' \
 --header 'Content-Type: application/json' \
 --data-raw '{"text": "Contrast the styles of Messi and Ronaldo"}'
 ```
+
+#### Note
+In the `.env` file, `MAX_TOKEN_RESPONSE` sets the maximum length of the response from the model. Set judiciously based upon the compute/GPU available, as longer responses will take more time, based on machine specs. Models have their own max response length, so setting it above that length will have no effect.

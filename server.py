@@ -5,11 +5,19 @@ import torch
 import logging
 import os
 from dotenv import load_dotenv
+import sys
 #model_short_name = "phi-2"
 #model_short_name = "Orca-2-7b"
+from transformers import pipeline
+from model_config import models, get_model_short_name
 load_dotenv()
 
-model_short_name = "TinyLlama-1.1B-Chat-v1.0"
+model_short_name = get_model_short_name("tinyllama") #"TinyLlama-1.1B-Chat-v1.0"
+# Check if a command line argument is provided for the model name
+if len(sys.argv) > 1:
+    model_short_name = get_model_short_name(sys.argv[1])  # Use the first command line argument as the model name
+
+
 MAX_TOKEN_RESPONSE = int(os.getenv("MAX_TOKEN_RESPONSE", "255"))
 TEMPERATURE = float(os.getenv("TEMPERATURE", "0.7"))
 TOP_K = int(os.getenv("TOP_K","50"))
@@ -17,7 +25,7 @@ TOP_P = float(os.getenv("TOP_P", "0.95"))
 LOG_RESPONSES = os.getenv("LOG_RESPONSES", "False").lower() == "true"
 print(f"Using Model: {model_short_name}")
 
-from transformers import pipeline
+
 
 logging.basicConfig(filename='app.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s:%(message)s')
 
@@ -46,7 +54,7 @@ def get_response_from_model(model_name: str, user_request: str, input_data):
     if(model_name == "phi-2"):
         input_data = request.json
         inputs = tokenizer(user_request, return_tensors='pt')
-        outputs = model.generate(inputs['input_ids'], max_length=50)
+        outputs = model.generate(inputs['input_ids'], max_length=MAX_TOKEN_RESPONSE)
         response = tokenizer.decode(outputs[0], skip_special_tokens=True)        
     elif (model_name) == "TinyLlama-1.1B-Chat-v1.0":
         messages = [
@@ -63,6 +71,9 @@ def get_response_from_model(model_name: str, user_request: str, input_data):
         logging.info(f"Response from {model_name} not logged.")
 
     return jsonify(response)
+
+
+    
 
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
