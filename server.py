@@ -85,4 +85,6 @@ def test():
     return jsonify({"response": "Hello World!"})
 
 if __name__ == '__main__':
-    app.run(debug=False, port="6001")
+    port = os.getenv("PORT", "6002")
+    print(f"Starting server on port {port}")
+    app.run(debug=False, port=port)
